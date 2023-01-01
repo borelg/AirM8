@@ -1,5 +1,55 @@
-# PM10Visualizer
+# AirM8
 
+## Introduction.
+
+AirM8 is a community project that has the aim of enhancing the awareness about air quality.
+In particular, the focus is on domestic indoor air quality.
+
+We often care very much about the quality of the air we breath when we are outside of our house.
+However, we spend most our time inside of our buildings. Why should we not understand better our environment?
+That is especially valid in winter season usually.
+
+So, the project is an IoT system which takes data on:
+- Temperature
+- Humidity
+- Particulate metters.
+
+The system then upload the data in a server and data are saved in a local database.
+The server provides you with both a dashboard to monitor the data and a software to create your own automation at home is values reach some threshold.
+
+## IoT sensing node.
+
+The IoT sensing node is powered by an ESP32.
+In particular, it was chosen the Firebeetle ESP32-E for that is a board which might enable very low energy consumption.
+(This might turn useful in other projects).
+
+Here you can find the wiki page: https://wiki.dfrobot.com/FireBeetle_Board_ESP32_E_SKU_DFR0654
+
+Temperature and humidity are measured by a Sensirion SHT20.
+Datasheet here: https://sensirion.com/media/documents/CCDE1377/635000A2/Sensirion_Datasheet_Humidity_Sensor_SHT20.pdf
+This device was chosen because proved to be reliable and easy to interface.
+
+Particulate matters are measured by a Plantower PMS7003.
+Datasheet here: https://aqicn.org/air/sensor/spec/pms7003-english-v2.5.pdf
+More info here: https://aqicn.org/sensor/pms5003-7003/
+
+SHT20 is interfaced via I2C, while PMS7003 is interfaced via TTL Serial.
+Please find here below the connections.
+
+[IMMAGINE]
+
+The folder named "ESP32_code" contains the Arduino IDE code for the IoT sensing node.
+Data exchange happens via Wi-Fi, which is configured via wifimanager.
+
+PMS7003 and SHT20 are polled every 10 minutes, the rest of the time the system stays in deep sleep.
+
+The measuring routine starts with 60 seconds of free air flow and that it takes 10 measures.
+The result is the average of the measure, which are then pubblished via MQTT.
+
+
+
+
+## Server.
 
 ## Sensor and data acquisition
 
