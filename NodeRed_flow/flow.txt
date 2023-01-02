@@ -1,0 +1,429 @@
+[
+    {
+        "id": "b700ec34.32526",
+        "type": "tab",
+        "label": "AirM8",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "15034ffd.5c7ec",
+        "type": "mqtt in",
+        "z": "b700ec34.32526",
+        "name": "",
+        "topic": "/environment",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "52ed78eb.3d8fd8",
+        "inputs": 0,
+        "x": 360,
+        "y": 280,
+        "wires": [
+            [
+                "eacdc026.7b213",
+                "3d63ff86.1cbb"
+            ]
+        ]
+    },
+    {
+        "id": "eacdc026.7b213",
+        "type": "debug",
+        "z": "b700ec34.32526",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 640,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "3d63ff86.1cbb",
+        "type": "json",
+        "z": "b700ec34.32526",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 580,
+        "y": 400,
+        "wires": [
+            [
+                "5ca8da5.c3e9224",
+                "2a90b351.f1ddec",
+                "ad0d0858.1c9f98"
+            ]
+        ]
+    },
+    {
+        "id": "5ca8da5.c3e9224",
+        "type": "function",
+        "z": "b700ec34.32526",
+        "name": "splitJson",
+        "func": "var msgPM1 = {payload:\"\"};\nvar msgPM25 = {payload:\"\"}\nvar msgPM10 = {payload:\"\"};\nvar msgTEMP = {payload:\"\"};\nvar msgRH = {payload:\"\"};\nvar msgMILLIS = {payload:\"\"};\n\nmsgPM1.payload = msg.payload.PM1;\nmsgPM25.payload = msg.payload.PM25;\nmsgPM10.payload = msg.payload.PM10;\nmsgTEMP.payload = msg.payload.TEMP;\nmsgRH.payload = msg.payload.RH;\nmsgMILLIS.payload = msg.payload.millis;\n\nreturn [ msgPM1, msgPM25, msgPM10, msgTEMP, msgRH, msgMILLIS];\n",
+        "outputs": 6,
+        "noerr": 0,
+        "x": 760,
+        "y": 400,
+        "wires": [
+            [],
+            [],
+            [
+                "c1990e62.30c3d"
+            ],
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "2a90b351.f1ddec",
+        "type": "debug",
+        "z": "b700ec34.32526",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 580,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "ad0d0858.1c9f98",
+        "type": "influxdb out",
+        "z": "b700ec34.32526",
+        "influxdb": "7c7ff0c.c121d1",
+        "name": "",
+        "measurement": "sensorA",
+        "precision": "",
+        "retentionPolicy": "",
+        "x": 870,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "9eb78032.b63a2",
+        "type": "mqtt in",
+        "z": "b700ec34.32526",
+        "name": "",
+        "topic": "/environmentB",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "52ed78eb.3d8fd8",
+        "inputs": 0,
+        "x": 370,
+        "y": 780,
+        "wires": [
+            [
+                "fbb8f88.abc7108"
+            ]
+        ]
+    },
+    {
+        "id": "52d1a8c3.83a108",
+        "type": "influxdb out",
+        "z": "b700ec34.32526",
+        "influxdb": "7c7ff0c.c121d1",
+        "name": "",
+        "measurement": "sensorB",
+        "precision": "",
+        "retentionPolicy": "",
+        "x": 560,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "fbb8f88.abc7108",
+        "type": "json",
+        "z": "b700ec34.32526",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 550,
+        "y": 780,
+        "wires": [
+            [
+                "52d1a8c3.83a108",
+                "2aad3cf0.63bcf4",
+                "3eb91c9f.6aea24"
+            ]
+        ]
+    },
+    {
+        "id": "2aad3cf0.63bcf4",
+        "type": "debug",
+        "z": "b700ec34.32526",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 590,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "c1990e62.30c3d",
+        "type": "hysteresis",
+        "z": "b700ec34.32526",
+        "name": "",
+        "ThresholdType": "fixed",
+        "ThresholdRising": "50",
+        "ThresholdFalling": "25",
+        "TopicThreshold": "",
+        "TopicCurrent": "",
+        "ThresholdDeltaRising": "",
+        "ThresholdDeltaFalling": "",
+        "InitialMessage": true,
+        "OutRisingType": "bool",
+        "OutRisingValue": "true",
+        "OutFallingType": "bool",
+        "OutFallingValue": "false",
+        "OutTopicType": "top",
+        "OutTopicValue": "",
+        "DynRaiseError": false,
+        "x": 840,
+        "y": 180,
+        "wires": [
+            [
+                "d367d893.2d09d8"
+            ]
+        ]
+    },
+    {
+        "id": "d367d893.2d09d8",
+        "type": "debug",
+        "z": "b700ec34.32526",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1010,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "38579c56.1a3034",
+        "type": "inject",
+        "z": "b700ec34.32526",
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "70",
+        "payloadType": "num",
+        "x": 630,
+        "y": 140,
+        "wires": [
+            [
+                "c1990e62.30c3d"
+            ]
+        ]
+    },
+    {
+        "id": "147fedff.8b3962",
+        "type": "inject",
+        "z": "b700ec34.32526",
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "35",
+        "payloadType": "num",
+        "x": 630,
+        "y": 180,
+        "wires": [
+            [
+                "c1990e62.30c3d"
+            ]
+        ]
+    },
+    {
+        "id": "d3f96bff.ce1f18",
+        "type": "inject",
+        "z": "b700ec34.32526",
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "5",
+        "payloadType": "num",
+        "x": 630,
+        "y": 220,
+        "wires": [
+            [
+                "c1990e62.30c3d"
+            ]
+        ]
+    },
+    {
+        "id": "3eb91c9f.6aea24",
+        "type": "function",
+        "z": "b700ec34.32526",
+        "name": "splitJson",
+        "func": "var msgPM1 = {payload:\"\"};\nvar msgPM25 = {payload:\"\"}\nvar msgPM10 = {payload:\"\"};\nvar msgTEMP = {payload:\"\"};\nvar msgRH = {payload:\"\"};\nvar msgMILLIS = {payload:\"\"};\n\nmsgPM1.payload = msg.payload.PM1;\nmsgPM25.payload = msg.payload.PM25;\nmsgPM10.payload = msg.payload.PM10;\nmsgTEMP.payload = msg.payload.TEMP;\nmsgRH.payload = msg.payload.RH;\nmsgMILLIS.payload = msg.payload.millis;\n\nreturn [ msgPM1, msgPM25, msgPM10, msgTEMP, msgRH, msgMILLIS];\n",
+        "outputs": 6,
+        "noerr": 0,
+        "x": 760,
+        "y": 820,
+        "wires": [
+            [],
+            [],
+            [
+                "243f3c5.eb05ec4"
+            ],
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "243f3c5.eb05ec4",
+        "type": "hysteresis",
+        "z": "b700ec34.32526",
+        "name": "",
+        "ThresholdType": "fixed",
+        "ThresholdRising": "25",
+        "ThresholdFalling": "10",
+        "TopicThreshold": "",
+        "TopicCurrent": "",
+        "ThresholdDeltaRising": "",
+        "ThresholdDeltaFalling": "",
+        "InitialMessage": true,
+        "OutRisingType": "bool",
+        "OutRisingValue": "true",
+        "OutFallingType": "bool",
+        "OutFallingValue": "false",
+        "OutTopicType": "top",
+        "OutTopicValue": "",
+        "DynRaiseError": false,
+        "x": 1020,
+        "y": 940,
+        "wires": [
+            [
+                "49e77933.f25d58"
+            ]
+        ]
+    },
+    {
+        "id": "ce0fb3e6.1c75d",
+        "type": "inject",
+        "z": "b700ec34.32526",
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "70",
+        "payloadType": "num",
+        "x": 830,
+        "y": 940,
+        "wires": [
+            [
+                "243f3c5.eb05ec4"
+            ]
+        ]
+    },
+    {
+        "id": "62dfbb5d.c45b14",
+        "type": "inject",
+        "z": "b700ec34.32526",
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "35",
+        "payloadType": "num",
+        "x": 830,
+        "y": 980,
+        "wires": [
+            [
+                "243f3c5.eb05ec4"
+            ]
+        ]
+    },
+    {
+        "id": "a275041d.a84098",
+        "type": "inject",
+        "z": "b700ec34.32526",
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "5",
+        "payloadType": "num",
+        "x": 830,
+        "y": 1020,
+        "wires": [
+            [
+                "243f3c5.eb05ec4"
+            ]
+        ]
+    },
+    {
+        "id": "49e77933.f25d58",
+        "type": "debug",
+        "z": "b700ec34.32526",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1210,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "52ed78eb.3d8fd8",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "7c7ff0c.c121d1",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "airm8db",
+        "name": "",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "1.x"
+    }
+]

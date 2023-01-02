@@ -17,6 +17,8 @@
 #include "PMS.h"
 #include "SHTSensor.h"
 
+#include <FastLED.h>
+
 //####################################################################
 
 
@@ -38,6 +40,10 @@
 #define TIME_TO_SLEEP       9        /* Time ESP32 will go to sleep (in minutes) */
 #define TIME_TO_RECONNECT   1
 
+#define NUM_LEDS 1
+#define DATA_PIN 5
+#define CLOCK_PIN 13
+
 void ConnectMQTT(void);
 void MQTTMessageReceived(String &topic, String &payload);
 void MQTTPubblishJson();
@@ -57,7 +63,7 @@ const char* stationName = "AirM8-Casa";
 
 WiFiClient net;
 MQTTClient client;
-const char* mqttServer = "192.168.1.100";
+const char* mqttServer = "192.168.1.99";
 const int mqttPort = 1883;
 
 unsigned long lastMillis = 0;
@@ -73,6 +79,7 @@ DynamicJsonDocument jsonDoc(capacity);
 
 bool connectionSuccess;
 
+CRGB leds[NUM_LEDS];
 //####################################################################
 
 
@@ -126,6 +133,20 @@ void setup() {
     Serial.println("Ping successfull");
   else
     Serial.println("Ping NOT successfull");
+  
+  FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);  // GRB ordering is assumed
+
+  leds[0] = CRGB::Red;
+  FastLED.show();
+  delay(500);
+  // LED light up in green 
+  leds[0] = CRGB::Green;
+  FastLED.show();
+  delay(500);
+  // LED light up in blue 
+  leds[0] = CRGB::Blue;
+  FastLED.show();
+  delay(500);
 
 }
 
@@ -246,6 +267,16 @@ void loop()
 
 
   delay(1000);
+
+
+  if (averageData.PM_SP_UG_10_0 < 25)
+    leds[0] = CRGB::Green;
+  else if (averageData.PM_SP_UG_10_0 < 50)
+    leds[0] = CRGB::Yellow;
+  else
+    leds[0] = CRGB::Red;
+
+  FastLED.show();  
 
   esp_deep_sleep_start();
 
