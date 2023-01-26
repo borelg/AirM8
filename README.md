@@ -46,10 +46,49 @@ Please find here below the connections.
 The folder named "ESP32_code" contains the Arduino IDE code for the IoT sensing node.
 Data exchange happens via Wi-Fi, which is configured via wifimanager.
 
-PMS7003 and SHT20 are polled every 10 minutes, the rest of the time the system stays in deep sleep.
+PMS7003 and SHT31 are polled every 10 minutes, the rest of the time the system stays in deep sleep.
 
 The measuring routine starts with 30 seconds of free air flow and that it takes 10 measures.
 The result is the average of the measures, which are then pubblished via MQTT.
+
+## Firmware upload
+
+The tool used for the firmware upload is Arduino IDE 2.0, downloadable from here: https://www.arduino.cc/en/software 
+Once downloaded the tool it is needed to import some libraries to make the IDE work with ESP32 boards. To do so you can add the following links for development boards download:
+
+http://arduino.esp8266.com/stable/package_esp8266com_index.json
+https://raw.githubusercontent.com/DFRobot/FireBeetle/master/package_DFRobot_index.json
+https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_dev_index.json
+
+To add the link you can paste them in File -> Preferences -> Additional board manager URLs (last line). See picture below:
+
+![boards](images/boards.png)
+
+Once you have added the link, the Arduino IDE is able to download the required specification to work with the ESP32 board we are looking for: Firebeetle ESP32.
+So, click on the left side to the board manager and search for "firebeetle". Then install the boards as shown in the pictures below:
+
+![firebeetle](images/firebeetle.png)
+
+Now you can open the project file. After downloading the firmware from the folder "ESP32_code" from the repo, you can open the project file named "AirM8_v1.ino".
+Connect the ESP32 board to the PC and make sure that the board is recognized by the PC and the right COM port is selected. Please see picture below:
+
+![portandboard](images/portandboard.png)
+
+Before uploading the firmware it is requeste to customize your sensor node to make sure you can easily connect to the server part. So, pay attention to the "Global Variable" part and change the following two variables:
+* const char* stationName
+* const char* mqttServer
+
+Please put your name, or any identifier in the station name and please replace the IP address of the mqttServer with the one provided to you. See the picture below as a reference:
+
+![globalvar](images/globalvar.png)
+
+Then, you are ready to compile the firmware by clicking the first button in the top menu bar. You should expect an output as the one in the picture below.
+
+![compile](images/compile.png)
+
+Then you can upload the firmware to the ESP32 by clicking the second button in the top menu bar. You should expect an output as the one in the picture below.
+
+![upload](images/upload.png)
 
 
 
