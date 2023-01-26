@@ -41,7 +41,7 @@ More info here: https://aqicn.org/sensor/pms5003-7003/
 SHT31 is interfaced via I2C, while PMS7003 is interfaced via TTL Serial.
 Please find here below the connections.
 
-![connections](images/connections.png)
+![connections2](images/connections2.png)
 
 The folder named "ESP32_code" contains the Arduino IDE code for the IoT sensing node.
 Data exchange happens via Wi-Fi, which is configured via wifimanager.
