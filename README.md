@@ -38,7 +38,7 @@ Datasheet here: https://aqicn.org/air/sensor/spec/pms7003-english-v2.5.pdf
 
 More info here: https://aqicn.org/sensor/pms5003-7003/
 
-SHT20 is interfaced via I2C, while PMS7003 is interfaced via TTL Serial.
+SHT31 is interfaced via I2C, while PMS7003 is interfaced via TTL Serial.
 Please find here below the connections.
 
 ![connections](images/connections.png)
