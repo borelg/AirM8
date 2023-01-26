@@ -27,7 +27,8 @@
 //#################### DEFINES & PROTOTYPES ##########################
 //####################################################################
 
-#define WDT_TIMEOUT 300
+#define WDT_TIMEOUT 600
+#define WIFIMANAGER_TIMEOUT 300
 #define DEBUG 1
 #define WIFI_CONNECT_TIMEOUT 30000
 
@@ -57,9 +58,8 @@ void PrintWakeupReason();
 //########################## GLOBAL VAR ##############################
 //####################################################################
 
-//WiFiAutoSelector wifiAutoSelector(WIFI_CONNECT_TIMEOUT);
 WiFiManager wifiManager;
-const char* stationName = "AirM8-Casa";
+const char* stationName = "AirM8-YOURNAMES";
 
 WiFiClient net;
 MQTTClient client;
@@ -120,7 +120,9 @@ void setup() {
   }
   sht31.setAccuracy(SHTSensor::SHT_ACCURACY_MEDIUM); // only supported by SHT3x
 
+  wifiManager.setConfigPortalTimeout(WIFIMANAGER_TIMEOUT);
   wifiManager.autoConnect(stationName);
+  Serial.println("Wifi");
  
   client.begin(mqttServer, net);
   client.onMessage(MQTTMessageReceived);
