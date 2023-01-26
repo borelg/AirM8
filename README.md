@@ -90,6 +90,14 @@ Then you can upload the firmware to the ESP32 by clicking the second button in t
 
 ![upload](images/upload.png)
 
+After confirming the update was successfull, reset the device by plugging out and in the USB cable. The device should start the sensing operation even without any configuration after 5 minutes. The lights on the device should change accordingly to the quality of the air:
+
+* GREEN : PM10 <25ug/m3
+* YELLOW: 25ug/m3 < PM10 < 50 ug/m3
+* RED	: PM10 > 50 ug/m3
+* BLUE	: Measuring ongoing
+
+![devices](images/devices.png)
 
 
 
