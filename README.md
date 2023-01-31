@@ -107,15 +107,6 @@ The server part is configured by taking inspiration from the following article: 
 
 The hardware part was chosen to be an Orange PI Zero 2 because of the limited availability of Raspberry PIs.
 
-The installation flow of all the components is described here below:
-
-### Nodered
-
-```
-bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
-sudo systemctl enable nodered.service
-```
-
 You can start by setting a static IP to your server by following these instructions: https://www.albertogonzalez.net/how-to-set-a-static-ip-on-armbian/
 
 On the board there are few software that route, elaborate and show the data:
@@ -130,38 +121,78 @@ The full architecture is shown below:
 
 ![schema2](images/schema2.png)
 
-
-
 You can install the single elements by follwing the instruction below:
 - NODERED: 	https://nodered.org/docs/getting-started/raspberrypi
 - Mosquitto:https://randomnerdtutorials.com/how-to-install-mosquitto-broker-on-raspberry-pi/
-- InfluxDB:	https://pimylifeup.com/raspberry-pi-influxdb/
+- InfluxDB:	https://docs.influxdata.com/influxdb/v1.8/introduction/install/
 - Grafana:	https://grafana.com/docs/grafana/latest/setup-grafana/installation/debian/
 (when Grafana is installing please use the following code: sudo apt-get install grafana=6.7.3.
 Reference here: https://community.grafana.com/t/upgrade-from-latest-6-7-to-7-0-0-on-ubuntu-18-04-lts/30472/5)
 
+For simplicity, here below all the steps are described with the relative commands:
+#### Nodered
 
+```
+bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
+
+sudo systemctl enable nodered.service
+```
 Nodered requires the following additional nodes that you can intall from the palette manager:
 - node-red-contrib-hysteresis
 - node-red-contrib-influxdb
 
 Then you can import the flow stored in the repo at the folder: NodeRed_Flow.
 
+#### Mosquitto
+
+```
+sudo apt install -y mosquitto mosquitto-clients
+
+sudo systemctl enable mosquitto.service
+
+mosquitto -v
+```
+
+#### InfluxDB
+
+```
+curl https://repos.influxdata.com/influxdb.key | gpg --dearmor | sudo tee /usr/share/keyrings/influxdb-archive-keyring.gpg >/dev/null
+
+echo "deb [signed-by=/usr/share/keyrings/influxdb-archive.keyring.gpg] https://repos.influxdata.com/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/influxdb.list
+
+sudo apt update
+
+sudo apt install influxdb
+```
 Then, you can configure InfluxDB. After the installation you need to create the database to host the data.
 Run in the terminal the following commands:
-
+```
 influx
 CREATE DATABASE airm8db
 SHOW DATABASES
 exit
-
+```
 And you should see your new database present.
 
-Now you can reboot the system with the command "reboot".
+#### Grafana
+```
+sudo apt-get install -y apt-transport-https
 
-You can now configure Grafana.
+sudo apt-get install -y software-properties-common wget
+
+sudo wget -q -O /usr/share/keyrings/grafana.key https://apt.grafana.com/gpg.key
+
+echo "deb [signed-by=/usr/share/keyrings/grafana.key] https://apt.grafana.com stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
+
+sudo apt-get update
+
+sudo apt-get install grafana=6.7.3
+sudo systemctl enable grafana-server.service
+sudo systemctl start grafana-server
+```
+
+You can now configure Grafana. (password is admin/admin)
 Start by adding the data source.
 Select Influxdb source. The address will be http://localhost:8086. The database name will be "airm8db". Click "Save%Test".
 
 Then you can add a Dashboard.
-
