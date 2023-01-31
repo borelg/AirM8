@@ -107,6 +107,15 @@ The server part is configured by taking inspiration from the following article: 
 
 The hardware part was chosen to be an Orange PI Zero 2 because of the limited availability of Raspberry PIs.
 
+The installation flow of all the components is described here below:
+
+### Nodered
+
+```
+bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
+sudo systemctl enable nodered.service
+```
+
 You can start by setting a static IP to your server by following these instructions: https://www.albertogonzalez.net/how-to-set-a-static-ip-on-armbian/
 
 On the board there are few software that route, elaborate and show the data:
