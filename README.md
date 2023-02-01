@@ -198,3 +198,6 @@ Start by adding the data source.
 Select Influxdb source. The address will be http://localhost:8086. The database name will be "airm8db". Click "Save%Test".
 
 Then you can add a Dashboard.
+
+data test:
+{"PM1": 1,"PM25": 25,"PM10": 10,"TEMP": 20,"RH": 50}
