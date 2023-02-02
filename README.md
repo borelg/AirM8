@@ -58,7 +58,7 @@ Once downloaded the tool it is needed to import some libraries to make the IDE w
 
 http://arduino.esp8266.com/stable/package_esp8266com_index.json
 https://raw.githubusercontent.com/DFRobot/FireBeetle/master/package_DFRobot_index.json
-https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_dev_index.json
+https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
 
 To add the link you can paste them in File -> Preferences -> Additional board manager URLs (last line). See picture below:
 
@@ -69,10 +69,28 @@ So, click on the left side to the board manager and search for "firebeetle". The
 
 ![firebeetle](images/firebeetle.png)
 
+TEST! Select the following board instead:
+
+![esp32board](images/esp32.png)
+
 Now you can open the project file. After downloading the firmware from the folder "ESP32_code" from the repo, you can open the project file named "AirM8_v1.ino".
 Connect the ESP32 board to the PC and make sure that the board is recognized by the PC and the right COM port is selected. Please see picture below:
 
 ![portandboard](images/portandboard.png)
+
+TEST! Select the following board instead:
+
+![adafruit](images/adafruit.png)
+
+Then you are required to install some libraries from the library manager on the left side:
+* MQTT
+* Arduinojson
+* Fastled
+Please see below the references:
+
+![mqtt](images/mqtt.png)
+![arduinojson](images/arduinojson.png)
+![fastled](images/fastled.png)
 
 Before uploading the firmware it is requeste to customize your sensor node to make sure you can easily connect to the server part. So, pay attention to the "Global Variable" part and change the following two variables:
 * const char* stationName
