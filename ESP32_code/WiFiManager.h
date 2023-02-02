@@ -10,7 +10,6 @@
  * @license MIT
  */
 
-
 #ifndef WiFiManager_h
 #define WiFiManager_h
 

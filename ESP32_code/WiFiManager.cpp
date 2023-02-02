@@ -3459,7 +3459,8 @@ bool WiFiManager::WiFiSetCountry(){
   // that the country code will be overridden if connecting to a "foreign" AP)
   else {
     #ifndef WM_NOCOUNTRY
-    err = esp_wifi_set_country_code(_wificountry.c_str(), true);
+    //err = esp_wifi_set_country_code(_wificountry.c_str(), true);
+    //err = esp_wifi_set_country(_wificountry.c_str(), true);
     #else
     DEBUG_WM(DEBUG_ERROR,"[ERROR] esp wifi set country is not available");
     err = true;
