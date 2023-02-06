@@ -64,21 +64,13 @@ To add the link you can paste them in File -> Preferences -> Additional board ma
 
 ![boards](images/boards.png)
 
-Once you have added the link, the Arduino IDE is able to download the required specification to work with the ESP32 board we are looking for: Firebeetle ESP32.
-So, click on the left side to the board manager and search for "firebeetle". Then install the boards as shown in the pictures below:
-
-![firebeetle](images/firebeetle.png)
-
-TEST! Select the following board instead:
+Once you have added the link, the Arduino IDE is able to download the required specification to work with the ESP32 board we are looking for: ESP32 board.
+So, click on the left side to the board manager and search for "esp32". Then install the boards as shown in the pictures below:
 
 ![esp32board](images/esp32.png)
 
 Now you can open the project file. After downloading the firmware from the folder "ESP32_code" from the repo, you can open the project file named "AirM8_v1.ino".
 Connect the ESP32 board to the PC and make sure that the board is recognized by the PC and the right COM port is selected. Please see picture below:
-
-![portandboard](images/portandboard.png)
-
-TEST! Select the following board instead:
 
 ![adafruit](images/adafruit.png)
 
