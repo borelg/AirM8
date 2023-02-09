@@ -151,6 +151,8 @@ void setup() {
   FastLED.show();
   delay(500);
 
+  //wifiManager.resetSettings();
+
 }
 
 //####################################################################
