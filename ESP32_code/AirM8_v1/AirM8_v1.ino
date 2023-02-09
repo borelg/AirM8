@@ -230,7 +230,7 @@ void loop()
   {
     Serial.println("Ping NOT successfull, reconnecting Wifi...");
     //ReconnectWiFi();
-    wifiManager.autoConnect(stationName);
+    //wifiManager.autoConnect(stationName);
   }
 
   delay(1000);
