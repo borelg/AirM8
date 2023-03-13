@@ -109,7 +109,27 @@ After confirming the update was successfull, reset the device by plugging out an
 
 ![devices](images/devices.png)
 
+Once the device has started, it can be connected to a WiFi network thanks to WifiManager library included in the firmware.
+The device will start its operation as an Access Point and it will setup a new WiFi connection called as setup in the firmware:
+```
+const char* stationName = "AirM8-YOURNAMES";
+```
+You can connect with your phone to the WiFi network and you will be automatically prompted to the WiFi setup page.
+If that does not happen, please navigate directly to 192.168.4.1 once you have connecte to the access point "AirM8-YOURNAMES".
 
+In any case you will be prompted to WiFiManager interface:
+
+![wifimanager](images/wifimanager.jpg)
+
+You can click on Configure Wifi, the ESP32 will scan for available WiFi network.
+Then select your network and input the password.
+Your preference will be saved to ESP32's memory and next time you reboot the device, it will automatically connect to the selected network.
+If the network is not available, the device will again create the access point "AirM8-YOURNAMES" and you will be able to setup a new connection.
+
+If, for some reason, you need to reset the settings of wifimanager you can insert in the code the following line at the end of the setup:
+```
+wifiManager.resetSettings();
+```
 
 ## Server.
 
