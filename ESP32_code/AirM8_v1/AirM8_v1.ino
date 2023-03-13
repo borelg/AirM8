@@ -328,7 +328,7 @@ void MQTTMessageReceived(String &topic, String &payload)
   Serial.println("incoming: " + topic + " - " + payload);
 }
 
-/*
+
 void MQTTPubblishJson(void)
 {
   char outputJson[300];
@@ -347,9 +347,8 @@ void MQTTPubblishJson(void)
   if (DEBUG)
     Serial.println("MQTT message published");
 }
-*/
-// TEST_FUNCTION
-void MQTTPubblishJson(void)
+/*
+void MQTTPubblishJson(void) // TEST_FUNCTION
 {
   char outputJson[300];
   jsonDoc["PM1"] = 10;
@@ -367,7 +366,7 @@ void MQTTPubblishJson(void)
   if (DEBUG)
     Serial.println("MQTT message published");
 }
-
+*/
 void PrintWakeupReason(){
   esp_sleep_wakeup_cause_t wakeup_reason;
 
