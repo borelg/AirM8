@@ -233,3 +233,9 @@ data test:
 {"PM1": 1,"PM25": 25,"PM10": 10,"TEMP": 20,"RH": 50}
 
 https://github.com/DFRobot/FireBeetle-ESP32/blob/master/package_esp32_index.json
+
+
+#### Troubleshooting
+
+If you are not able to see the serial port of ESP32, please make sure that you have the driver installed for the CH340 USB-to-TTL serial IC on the Firebeetle board.
+You can find the drivers here: https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all
