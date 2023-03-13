@@ -64,7 +64,7 @@ const char* stationName = "AirM8-YOURNAMES";
 
 WiFiClient net;
 MQTTClient client;
-const char* mqttServer = "192.168.1.99";
+const char* mqttServer = "192.168.1.100";
 const int mqttPort = 1883;
 
 unsigned long lastMillis = 0;
@@ -328,6 +328,7 @@ void MQTTMessageReceived(String &topic, String &payload)
   Serial.println("incoming: " + topic + " - " + payload);
 }
 
+/*
 void MQTTPubblishJson(void)
 {
   char outputJson[300];
@@ -336,6 +337,26 @@ void MQTTPubblishJson(void)
   jsonDoc["PM10"] = averageData.PM_SP_UG_10_0;
   jsonDoc["TEMP"] = shtTemperature;
   jsonDoc["RH"] = shtHumidity;
+  jsonDoc["millis"] = millis() - lastMillis;
+  serializeJson(jsonDoc, outputJson);
+  delay(10);  // <- fixes some issues with WiFi stability
+  client.publish("/environmentB", outputJson);
+  delay(10);
+  
+  delay(10);  // <- fixes some issues with WiFi stability
+  if (DEBUG)
+    Serial.println("MQTT message published");
+}
+*/
+// TEST_FUNCTION
+void MQTTPubblishJson(void)
+{
+  char outputJson[300];
+  jsonDoc["PM1"] = 10;
+  jsonDoc["PM25"] = 10;
+  jsonDoc["PM10"] = 10;
+  jsonDoc["TEMP"] = 10;
+  jsonDoc["RH"] = 10;
   jsonDoc["millis"] = millis() - lastMillis;
   serializeJson(jsonDoc, outputJson);
   delay(10);  // <- fixes some issues with WiFi stability
