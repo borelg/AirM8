@@ -242,4 +242,17 @@ https://github.com/DFRobot/FireBeetle-ESP32/blob/master/package_esp32_index.json
 You can find the drivers here: https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all
 
 - If you are not receiving the mqtt message on the server side, please enable the debug nodes on nodered and check if any information is coming in:
+
 ![debug_node](images/debug_node.png)
+
+- If you want to test the server part without having an ESP32 device sending data, you can generate simple data by using an "inject" node in node-red.
+You can inject the following data formatted as a "string":
+```
+{"PM1": 1,"PM25": 25,"PM10": 10,"TEMP": 20,"RH": 50}
+```
+
+![injectdata2](images/injectdata.png)
+
+![injectdata](images/injectdata.png)
+
+You can then click the blue button in the inject node to inject the data.
