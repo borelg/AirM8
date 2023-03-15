@@ -262,6 +262,7 @@ You can use for instance MQTT Explorer: https://mqtt-explorer.com/ (which has al
 First, you should create the connection by configuring the right IP Address of your server.
 Second, you can send a message which replicates what the ESP32 would send to the server after a measurement.
 Please see the screenshots below as a reference.
+After clicking "Publish" yous should see the messages received by the Mosquitto broker and you should see the debug output in node-red as well.
 
 ![mqtt_explorer](images/mqtt_explorer.png)
 ![mqtt_pubblish](images/mqtt_pubblish.png)
