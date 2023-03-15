@@ -256,3 +256,13 @@ You can inject the following data formatted as a "string":
 ![injectdata](images/injectdata.png)
 
 You can then click the blue button in the inject node to inject the data.
+
+- If you want to verify whether the mosquitto broker is working, you can use an MQTT client to make sure that the MQTT messages are received correctly and that the problem is not in the broker.
+You can use for instance MQTT Explorer: https://mqtt-explorer.com/ (which has also a portable version).
+First, you should create the connection by configuring the right IP Address of your server.
+Second, you can send a message which replicates what the ESP32 would send to the server after a measurement.
+Please see the screenshots below as a reference.
+
+![mqtt_explorer](images/mqtt_explorer.png)
+![mqtt_pubblish](images/mqtt_pubblish.png)
+
