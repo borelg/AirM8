@@ -238,14 +238,14 @@ https://github.com/DFRobot/FireBeetle-ESP32/blob/master/package_esp32_index.json
 
 #### Troubleshooting
 
-- If you are not able to see the serial port of ESP32, please make sure that you have the driver installed for the CH340 USB-to-TTL serial IC on the Firebeetle board.
+1 - If you are not able to see the serial port of ESP32, please make sure that you have the driver installed for the CH340 USB-to-TTL serial IC on the Firebeetle board.
 You can find the drivers here: https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all
 
-- If you are not receiving the mqtt message on the server side, please enable the debug nodes on nodered and check if any information is coming in:
+2 - If you are not receiving the mqtt message on the server side, please enable the debug nodes on nodered and check if any information is coming in:
 
 ![debug_node](images/debug_node.png)
 
-- If you want to test the server part without having an ESP32 device sending data, you can generate simple data by using an "inject" node in node-red.
+3 - If you want to test the server part without having an ESP32 device sending data, you can generate simple data by using an "inject" node in node-red.
 You can inject the following data formatted as a "string":
 ```
 {"PM1": 1,"PM25": 25,"PM10": 10,"TEMP": 20,"RH": 50}
@@ -257,7 +257,7 @@ You can inject the following data formatted as a "string":
 
 You can then click the blue button in the inject node to inject the data.
 
-- If you want to verify whether the mosquitto broker is working, you can use an MQTT client to make sure that the MQTT messages are received correctly and that the problem is not in the broker.
+4 - If you want to verify whether the mosquitto broker is working, you can use an MQTT client to make sure that the MQTT messages are received correctly and that the problem is not in the broker.
 You can use for instance MQTT Explorer: https://mqtt-explorer.com/ (which has also a portable version).
 First, you should create the connection by configuring the right IP Address of your server.
 Second, you can send a message which replicates what the ESP32 would send to the server after a measurement.
