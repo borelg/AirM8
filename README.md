@@ -89,7 +89,7 @@ Before uploading the firmware it is requeste to customize your sensor node to ma
 * const char* stationName
 * const char* mqttServer
 
-Please put your name, or any identifier in the station name and please replace the IP address of the mqttServer with the one provided to you. See the picture below as a reference:
+Please put your name, or any identifier in the station name (any name will work) and please replace the IP address of the mqttServer with the one provided to you. The IP of the mqtt server is the one that you will assign to your OrangePi. See the picture below as a reference:
 
 ![globalvar](images/globalvar.png)
 
