@@ -57,7 +57,6 @@ The tool used for the firmware upload is Arduino IDE 2.0, downloadable from here
 Once downloaded the tool it is needed to import some libraries to make the IDE work with ESP32 boards. To do so you can add the following links for development boards download:
 
 http://arduino.esp8266.com/stable/package_esp8266com_index.json
-https://raw.githubusercontent.com/DFRobot/FireBeetle/master/package_DFRobot_index.json
 https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
 
 To add the link you can paste them in File -> Preferences -> Additional board manager URLs (last line). See picture below:
