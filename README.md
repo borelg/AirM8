@@ -77,12 +77,14 @@ Then you are required to install some libraries from the library manager on the 
 * MQTT
 * Arduinojson
 * Fastled
+* WiFiManager
 
 Please see below the references:
 
 ![mqtt](images/mqtt.png)
 ![arduinojson](images/arduinojson.png)
 ![fastled](images/fastled.png)
+![wifimanagerlib](images/wifimanagerlib.png)
 
 Before uploading the firmware it is requeste to customize your sensor node to make sure you can easily connect to the server part. So, pay attention to the "Global Variable" part and change the following two variables:
 * const char* stationName
