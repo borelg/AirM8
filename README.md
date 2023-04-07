@@ -153,6 +153,10 @@ The full architecture is shown below:
 
 ![schema2](images/schema2.png)
 
+You can start by connecting the OrangePi to your network. It is suggested to use the ethernet interface rather than the WiFi for a better stability.
+
+![network](images/network.png)
+
 You can install the single elements by follwing the instruction below:
 - NODERED: 	https://nodered.org/docs/getting-started/raspberrypi
 - Mosquitto:https://randomnerdtutorials.com/how-to-install-mosquitto-broker-on-raspberry-pi/
