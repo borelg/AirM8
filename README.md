@@ -286,7 +286,7 @@ You should see something like this:
 xxx.xxx.xxx.xxx:3000 (e.g. 192.168.1.69:3000) 
 If that is not working you can check whether NodeRed is installed by launching this command in the terminal:
 ```
-sudo systemctl status nodered
+sudo systemctl status grafana-server
 ```
 You should see something like this:
 ![grafanarunning](images/grafanarunning.png)
