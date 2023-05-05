@@ -272,3 +272,21 @@ After clicking "Publish" yous should see the messages received by the Mosquitto 
 ![mqtt_explorer](images/mqtt_explorer.png)
 ![mqtt_pubblish](images/mqtt_pubblish.png)
 
+5 - If you want to verify that NodeRed is active and working, you can visit the your IP address at the NodeRed port, which is 1880:
+xxx.xxx.xxx.xxx:1880 (e.g. 192.168.1.69:1880) 
+If that is not working you can check whether NodeRed is installed by launching this command in the terminal:
+```
+sudo systemctl status nodered
+```
+You should see something like this:
+![noderedrunning](images/noderedrunning.png)
+
+
+6 - If you want to verify that Grafana is active and working, you can visit the your IP address at the NodeRed port, which is 3000:
+xxx.xxx.xxx.xxx:3000 (e.g. 192.168.1.69:3000) 
+If that is not working you can check whether NodeRed is installed by launching this command in the terminal:
+```
+sudo systemctl status nodered
+```
+You should see something like this:
+![grafanarunning](images/grafanarunning.png)
