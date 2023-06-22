@@ -233,7 +233,18 @@ You can now configure Grafana. (password is admin/admin)
 Start by adding the data source.
 Select Influxdb source. The address will be http://localhost:8086. The database name will be "airm8db". Click "Save%Test".
 
-Then you can add a Dashboard.
+![grafanadatasource](images/grafanadatasource.png)
+
+![grafanaairm8db](images/grafanaairm8db.png)
+
+Then you can create a Dashboard and add the desired panels.
+The panels should then be configured to make sure that the correct data source (at the top) is selected.
+In this case the source should be the airm8db.
+If data in the db are available, you will be able to select the relevant data field as shown in the picture below.
+If you do not see the data try to adjust the time horizon and instead of the last 6 hours select a wider range.
+
+![grafanaairm8db](images/grafanaairm8db.png)
+![grafanapanelconfig](images/grafanapanelconfig.png)
 
 data test:
 {"PM1": 1,"PM25": 25,"PM10": 10,"TEMP": 20,"RH": 50}
