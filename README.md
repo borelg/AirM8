@@ -63,6 +63,7 @@ To add the link you can paste them in File -> Preferences -> Additional board ma
 
 ![boards](images/boards.png)
 
+In the preferences also select verbose output both for "compile" and "upload" to receive more information that might be useful for debugging.
 Once you have added the link, the Arduino IDE is able to download the required specification to work with the ESP32 board we are looking for: ESP32 board.
 So, click on the left side to the board manager and search for "esp32". Then install the boards as shown in the pictures below:
 
