@@ -74,6 +74,9 @@ Connect the ESP32 board to the PC and make sure that the board is recognized by 
 
 ![adafruit](images/adafruit.png)
 
+If your ESP32 is not recognized, you might miss the drivers. In this case please follow this link for the installation:
+https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all
+
 Then you are required to install some libraries from the library manager on the left side:
 * MQTT
 * Arduinojson
