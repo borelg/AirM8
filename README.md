@@ -219,6 +219,18 @@ sudo systemctl enable mosquitto.service
 mosquitto -v
 ```
 
+After having installed mosquitto it is required to enable the configuration to receive message from the network.
+To do so open the configuration file:
+```
+sudo nano /etc/mosquitto/mosquitto.conf
+```
+And add the following two lines at the end of the file:
+```
+listener 1883
+allow_anonymous true
+```
+
+
 #### InfluxDB
 
 ```
