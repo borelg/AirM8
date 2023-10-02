@@ -143,6 +143,32 @@ The server part is configured by taking inspiration from the following article: 
 
 The hardware part was chosen to be an Orange PI Zero 2 because of the limited availability of Raspberry PIs.
 
+The first point is wiriting the OS on the microsd of the Orange Pi Zero 2. The chosen distribution is Ubuntu Jammy.
+The distribution can be downloaded from here:
+http://www.orangepi.org/html/hardWare/computerAndMicrocontrollers/service-and-support/Orange-Pi-Zero-2.html
+
+Once the SD has been written, insert it in the device, connect it to your local network via ethernet and connect it to power.
+To discover the current IP address of the device you can use an app on your phone called "Fing" that list the name and IP addresses of the devices connected to your local network.
+
+Once you know the IP, you can connect to the device from your pc in the same network by SSH:
+```
+ssh root@YOURIPADDRESS
+```
+
+You will be asked for the password and then you will be connected.
+
+The distribution will be installed with 2 users:
+
+- user: root		pass: orangepi
+- user: orangepi	pass: orangepi
+
+AS a first step CHANGE THE PASSWORD. To change it use the following command:
+```
+passwd
+```
+
+You should use the root user owtherwise the installation of influxdb will have some problems with folder permissions.
+
 You can start by setting a static IP to your server by following these instructions: https://www.albertogonzalez.net/how-to-set-a-static-ip-on-armbian/
 
 On the board there are few software that route, elaborate and show the data:
@@ -196,15 +222,15 @@ mosquitto -v
 #### InfluxDB
 
 ```
-wget -q https://repos.influxdata.com/influxdata-archive_compat.key
+wget -qO- https://repos.influxdata.com/influxdb.key | sudo apt-key add -
 
-echo '393e8779c89ac8d958f81f942f9ad7fb82a25e133faddaf92e15b16e6ac9ce4c influxdata-archive_compat.key' | sha256sum -c && cat influxdata-archive_compat.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/influxdata-archive_compat.gpg > /dev/null
+echo "deb https://repos.influxdata.com/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/influxdb.list
 
-echo 'deb [signed-by=/etc/apt/trusted.gpg.d/influxdata-archive_compat.gpg] https://repos.influxdata.com/debian stable main' | sudo tee /etc/apt/sources.list.d/influxdata.list
+sudo apt update && sudo apt install influxdb
 
-sudo apt update
-
-sudo apt install influxdb
+sudo systemctl enable influxdb
+sudo systemctl start influxdb
+sudo systemctl status influxdb
 ```
 Then, you can configure InfluxDB. After the installation you need to create the database to host the data.
 Run in the terminal the following commands:
