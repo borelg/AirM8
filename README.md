@@ -216,7 +216,7 @@ sudo apt install -y mosquitto mosquitto-clients
 
 sudo systemctl enable mosquitto.service
 
-mosquitto -v
+sudo systemctl status mosquitto
 ```
 
 After having installed mosquitto it is required to enable the configuration to receive message from the network.
@@ -228,6 +228,11 @@ And add the following two lines at the end of the file:
 ```
 listener 1883
 allow_anonymous true
+```
+Then it is required to restart mosquitto and you can check the status again:
+```
+sudo systemctl restart mosquitto
+sudo systemctl status mosquitto
 ```
 
 
