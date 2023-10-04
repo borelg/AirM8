@@ -246,6 +246,8 @@ sudo mv influxdb.gpg /etc/apt/trusted.gpg.d/
 echo "deb https://repos.influxdata.com/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/influxdb.list
 sudo apt update
 sudo apt install influxdb
+sudo apt install influxdb-client
+
 
 sudo systemctl enable influxdb
 sudo systemctl start influxdb
