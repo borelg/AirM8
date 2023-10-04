@@ -239,11 +239,13 @@ sudo systemctl status mosquitto
 #### InfluxDB
 
 ```
-wget -qO- https://repos.influxdata.com/influxdb.key | sudo apt-key add -
+wget -qO - https://repos.influxdata.com/influxdb.key > influxdb.gpg
+sudo mv influxdb.gpg /etc/apt/trusted.gpg.d/
 
-echo "deb https://repos.influxdata.com/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/influxdb.list
 
-sudo apt update && sudo apt install influxdb
+echo "deb https://repos.influxdata.com/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/influxdb.list
+sudo apt update
+sudo apt install influxdb
 
 sudo systemctl enable influxdb
 sudo systemctl start influxdb
