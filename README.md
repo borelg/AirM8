@@ -352,3 +352,9 @@ sudo systemctl status grafana-server
 ```
 You should see something like this:
 ![grafanarunning](images/grafanarunning.png)
+
+If the status is not running, Grafana logs can provide detailed information on what might be going wrong. The default log location for Grafana is /var/log/grafana/grafana.log. 
+Check this log for any error messages or warnings.
+```
+cat /var/log/grafana/grafana.log
+```
