@@ -19,6 +19,9 @@ So, the project is an IoT system which takes data on:
 The system then upload the data in a server and data are saved in a local database.
 The server provides you with both a dashboard to monitor the data and a software to create your own automation at home is values reach some threshold.
 
+![demo_dashboard](images/demo_dashboard.jpg)
+![demo_device](images/demo_device.jpg)
+
 ## IoT sensing node.
 
 The IoT sensing node is powered by an ESP32.
