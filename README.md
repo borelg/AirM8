@@ -361,3 +361,36 @@ Check this log for any error messages or warnings.
 ```
 cat /var/log/grafana/grafana.log
 ```
+
+7 - If you want to backup all the data from the influxDB you can write the following script and execute it.
+So open the ssh console and input
+```
+nano serve_csv.sh 
+```
+This will open the nano editor and now you can paste the following script:
+```
+#!/bin/bash
+
+# Export data from InfluxDB to CSV
+influx -database 'airm8db' -execute 'SELECT * FROM sensorB' -format csv > output.csv
+
+# Start a simple HTTP server on port 8000
+python3 -m http.server
+```
+
+Then you need to make the script executable and execute the script:
+
+```
+sudo chmod+x serve_csv.sh
+./serve_csv.sh
+```
+
+The script will backup all the data from the influxDB instance and save them in a CSV.
+The CSV file is then downloadable from an HTTP server at the following address:
+
+```
+http://the_ip_of_your_orangepi:8000
+```
+
+To download the CSV file you just need to click on it.
+Then in the SSH console you can click CTRL+C to end the script and close the HTTP server.
