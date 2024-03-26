@@ -284,7 +284,7 @@ sudo systemctl enable grafana-server.service
 sudo systemctl start grafana-server
 ```
 
-You can now configure Grafana. (password is admin/admin)
+You can now configure Grafana ar port 3000: http://YOUR_IP_ADDRESS:3000 (password is admin/admin)
 Start by adding the data source.
 Select Influxdb source. The address will be http://localhost:8086. The database name will be "airm8db". Click "Save%Test".
 
