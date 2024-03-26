@@ -205,6 +205,7 @@ For simplicity, here below all the steps are described with the relative command
 bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
 
 sudo systemctl enable nodered.service
+sudo systemctl start nodered.service
 ```
 Nodered requires the following additional nodes that you can intall from the palette manager:
 - node-red-contrib-hysteresis
