@@ -382,7 +382,7 @@ python3 -m http.server
 Then you need to make the script executable and execute the script:
 
 ```
-sudo chmod+x serve_csv.sh
+sudo chmod +x serve_csv.sh
 ./serve_csv.sh
 ```
 
