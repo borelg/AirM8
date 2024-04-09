@@ -404,3 +404,66 @@ sudo mkdir -p /var/log/grafana /var/lib/grafana
 sudo chown -R  grafana:grafana /var/log/grafana /var/lib/grafana
 sudo systemctl start grafana-server
 ```
+9 - If you want to make the solution at point 8 permanent follow this steps
+* Create a script in your home folder with the following command:
+```
+nano setup_grafana_log.sh
+```
+* with the following content
+```
+#!/bin/bash
+
+# Define the Grafana log directory and the systemd service file path
+GRAFANA_LOG_DIR="/var/log/grafana"
+SYSTEMD_SERVICE_FILE="/etc/systemd/system/ensure-grafana-log-dir.service"
+
+# Function to check and create the Grafana log directory
+ensure_grafana_log_dir() {
+    echo "Checking for the Grafana log directory..."
+    if [ ! -d "$GRAFANA_LOG_DIR" ]; then
+        echo "Creating Grafana log directory: $GRAFANA_LOG_DIR"
+        mkdir -p $GRAFANA_LOG_DIR
+        chown -R grafana:grafana $GRAFANA_LOG_DIR
+    else
+        echo "Grafana log directory already exists."
+    fi
+}
+
+# Function to create and enable the systemd service
+setup_systemd_service() {
+    echo "Setting up systemd service to ensure Grafana log directory exists on boot..."
+    cat > $SYSTEMD_SERVICE_FILE << EOF
+[Unit]
+Description=Ensure Grafana Log Directory Exists
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash -c 'mkdir -p $GRAFANA_LOG_DIR && chown -R grafana:grafana $GRAFANA_LOG_DIR'
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+    # Reload systemd to recognize the new service, enable it, and start it
+    systemctl daemon-reload
+    systemctl enable ensure-grafana-log-dir.service
+    systemctl start ensure-grafana-log-dir.service
+    echo "Systemd service has been set up and started."
+}
+
+# Ensure script is run as root
+if [ "$EUID" -ne 0 ]; then 
+    echo "Please run as root"
+    exit
+fi
+
+ensure_grafana_log_dir
+setup_systemd_service
+
+```
+* then make it executable and run the script
+```
+sudo chmod +x setup_grafana_log.sh
+sudo ./setup_grafana_log.sh
+```
