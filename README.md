@@ -401,6 +401,6 @@ Then in the SSH console you can click CTRL+C to end the script and close the HTT
 
 ```
 sudo mkdir -p /var/log/grafana /var/lib/grafana
-sudo chown -R  grafana:grafana/var/log/grafana /var/lib/grafana
+sudo chown -R  grafana:grafana /var/log/grafana /var/lib/grafana
 sudo systemctl start grafana-server
 ```
