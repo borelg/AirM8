@@ -395,3 +395,12 @@ http://the_ip_of_your_orangepi:8000
 
 To download the CSV file you just need to click on it.
 Then in the SSH console you can click CTRL+C to end the script and close the HTTP server.
+
+
+8 - If you are having trouble accessing Grafana, there are most likely some problems with log files that have been corrupted. To fix this, run these 3 commands
+
+```
+sudo mkdir -p /var/log/grafana /var/lib/grafana
+sudo chown -R  grafana:grafana/var/log/grafana /var/lib/grafana
+sudo systemctl start grafana-server
+```
